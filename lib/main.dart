@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:the_real_thing/login_page.dart';
+import 'package:the_real_thing/pages/home_page.dart';
+import 'package:the_real_thing/pages/login_page.dart';
+import 'package:the_real_thing/styles/app_colors.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,8 +10,16 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        home: LoginPage(),
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Urbanist',
+        scaffoldBackgroundColor: AppColors.background,
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginPage(),
+        '/home': (context) => HomePage(),
+      },
     );
   }
 }
