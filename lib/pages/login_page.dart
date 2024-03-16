@@ -76,7 +76,7 @@ class LoginPage extends StatelessWidget {
                     foregroundColor: Colors.black,
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/home');
+                    Navigator.of(context).pushReplacementNamed('/main');
                   },
                   child: const Text('Login'),
                 ),
