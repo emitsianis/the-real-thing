@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:the_real_thing/components/post_item.dart';
-import 'package:the_real_thing/styles/app_colors.dart';
+import 'package:the_real_thing/config/app_strings.dart';
+
+import '../components/toolbar.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -18,13 +21,13 @@ class HomePage extends StatelessWidget {
     mockUsersFromServer();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('The Real Thing'),
-        backgroundColor: AppColors.background,
-        foregroundColor: AppColors.white,
-        centerTitle: false,
-        actions: const [
-          Icon(Icons.location_on_outlined),
+      appBar: Toolbar(
+        title: AppStrings.appName,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset('assets/svg/ic_location.svg'),
+          ),
         ],
       ),
       body: ListView.separated(

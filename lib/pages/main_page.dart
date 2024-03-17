@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:the_real_thing/config/app_strings.dart';
 import 'package:the_real_thing/pages/home_page.dart';
+import 'package:the_real_thing/pages/profile_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -14,10 +16,10 @@ class _MainPageState extends State<MainPage> {
 
   final pages = [
     HomePage(),
-    const Center(child: Text("Favorite")),
-    const Center(child: Text("Add Post")),
-    const Center(child: Text("Messages")),
-    const Center(child: Text("User")),
+    const Center(child: Text(AppStrings.favorites)),
+    const Center(child: Text(AppStrings.addPost)),
+    const Center(child: Text(AppStrings.messages)),
+    ProfilePage(),
   ];
 
   @override
@@ -38,23 +40,23 @@ class _MainPageState extends State<MainPage> {
         items: [
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/svg/ic_home.svg"),
-            label: "Home",
+            label: AppStrings.home,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/svg/ic_favorite.svg"),
-            label: "Favorite",
+            label: AppStrings.favorites,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/svg/ic_messages.svg"),
-            label: "Add Post",
+            label: AppStrings.addPost,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/svg/ic_messages.svg"),
-            label: "Message",
+            label: AppStrings.messages,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/svg/ic_user.svg"),
-            label: "User",
+            label: AppStrings.user,
           ),
         ],
       ),
