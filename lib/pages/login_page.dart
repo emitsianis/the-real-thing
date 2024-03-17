@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:the_real_thing/config/app_icons.dart';
 import 'package:the_real_thing/config/app_routes.dart';
 import 'package:the_real_thing/config/app_strings.dart';
 import 'package:the_real_thing/pages/home_page.dart';
@@ -111,7 +112,7 @@ class LoginPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/images/google.png',
+                        AppIcons.icGoogle,
                         width: 22,
                         height: 22,
                       ),
@@ -142,7 +143,7 @@ class LoginPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/images/facebook.png',
+                        AppIcons.icFacebook,
                         width: 22,
                         height: 22,
                       ),

@@ -4,6 +4,7 @@ import 'package:the_real_thing/components/post_item.dart';
 import 'package:the_real_thing/config/app_strings.dart';
 
 import '../components/toolbar.dart';
+import '../config/app_icons.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -26,7 +27,7 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: SvgPicture.asset('assets/svg/ic_location.svg'),
+            icon: SvgPicture.asset(AppIcons.icLocation),
           ),
         ],
       ),

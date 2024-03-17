@@ -4,6 +4,8 @@ import 'package:the_real_thing/config/app_strings.dart';
 import 'package:the_real_thing/pages/home_page.dart';
 import 'package:the_real_thing/pages/profile_page.dart';
 
+import '../config/app_icons.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -39,23 +41,23 @@ class _MainPageState extends State<MainPage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/svg/ic_home.svg"),
+            icon: SvgPicture.asset(AppIcons.icHome),
             label: AppStrings.home,
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/svg/ic_favorite.svg"),
+            icon: SvgPicture.asset(AppIcons.icFavorite),
             label: AppStrings.favorites,
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/svg/ic_messages.svg"),
+            icon: SvgPicture.asset(AppIcons.icMessage),
             label: AppStrings.addPost,
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/svg/ic_messages.svg"),
+            icon: SvgPicture.asset(AppIcons.icMessage),
             label: AppStrings.messages,
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/svg/ic_user.svg"),
+            icon: SvgPicture.asset(AppIcons.icUser),
             label: AppStrings.user,
           ),
         ],
