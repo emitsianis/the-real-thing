@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
             label: AppStrings.favorites,
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(AppIcons.icMessage),
+            icon: SvgPicture.asset(AppIcons.icAdd),
             label: AppStrings.addPost,
           ),
           BottomNavigationBarItem(

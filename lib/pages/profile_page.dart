@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_real_thing/components/toolbar.dart';
+import 'package:the_real_thing/components/user_avatar.dart';
 import 'package:the_real_thing/config/app_routes.dart';
 import 'package:the_real_thing/styles/app_text.dart';
 
@@ -46,27 +47,20 @@ class ProfilePage extends StatelessWidget {
           )
         ],
       ),
-      body: Column(children: [
-        ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(16)),
-          child: Image.asset(
-            'assets/temp/user1.png',
-            width: 90,
-            height: 90,
-          ),
-        ),
-        const SizedBox(height: 24),
-        const Text(
+      body: const Column(children: [
+        UserAvatar(size: 90),
+        SizedBox(height: 24),
+        Text(
           'User Name',
           style: AppText.header2,
         ),
-        const SizedBox(height: 12),
-        const Text(
+        SizedBox(height: 12),
+        Text(
           'Madagascar',
           style: AppText.subtitle3,
         ),
-        const SizedBox(height: 24),
-        const Row(
+        SizedBox(height: 24),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Column(
@@ -98,7 +92,7 @@ class ProfilePage extends StatelessWidget {
             )
           ],
         ),
-        const Divider(
+        Divider(
           thickness: 1,
           height: 24,
         ),

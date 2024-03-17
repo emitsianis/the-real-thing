@@ -28,4 +28,9 @@ class AppStrings {
   static const addPost = "Add post";
   static const edit = "Edit";
   static const logout = "Logout";
+  static const birthday = "Birthday";
+  static const male = "Male";
+  static const female = "Female";
+  static const other = "Other";
+  static const gender = "Gender";
 }
