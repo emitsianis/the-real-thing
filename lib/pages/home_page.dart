@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:the_real_thing/components/post_item.dart';
 import 'package:the_real_thing/styles/app_colors.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  List<String> users = [];
+
+  mockUsersFromServer() {
+    for (int i = 0; i < 100; i++) {
+      users.add('User number$i');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    mockUsersFromServer();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('The Real Thing'),
@@ -16,33 +27,15 @@ class HomePage extends StatelessWidget {
           Icon(Icons.location_on_outlined),
         ],
       ),
-      body: ListView(
-         children: mockUsersFromServer(),
+      body: ListView.separated(
+        itemBuilder: (context, index) {
+          return PostItem(user: users[index]);
+        },
+        separatorBuilder: (context, index) {
+          return const SizedBox(height: 24);
+        },
+        itemCount: users.length,
       ),
     );
   }
-}
-
-Widget _userItem() {
-  return Row(
-    children: [
-      Image.asset(
-        'assets/temp/user1.png',
-        width: 40,
-        height: 40,
-      ),
-      const SizedBox(width: 16),
-      const Text("Sarah Fernandez")
-    ],
-  );
-}
-
-List<Widget> mockUsersFromServer() {
-  List<Widget> Users = [];
-
-  for (int i = 0; i < 20; i++) {
-    Users.add(_userItem());
-  }
-
-  return Users;
 }
