@@ -5,6 +5,7 @@ import 'package:the_real_thing/config/app_strings.dart';
 
 import '../components/toolbar.dart';
 import '../config/app_icons.dart';
+import '../config/app_routes.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -26,7 +27,9 @@ class HomePage extends StatelessWidget {
         title: AppStrings.appName,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(AppRoutes.nearby);
+            },
             icon: SvgPicture.asset(AppIcons.icLocation),
           ),
         ],
