@@ -7,9 +7,9 @@ import '../pages/main_page.dart';
 
 class AppRoutes {
   static final pages = {
-    AppRoutes.login: (context) => const LoginPage(),
+    AppRoutes.login: (context) => LoginPage(),
     AppRoutes.home: (context) => HomePage(),
-    AppRoutes.main: (context) => const MainPage(),
+    AppRoutes.main: (context) => MainPage(),
     AppRoutes.editProfile: (context) => EditProfilePage(),
     AppRoutes.nearby: (context) => NearbyPage(),
   };

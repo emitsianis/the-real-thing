@@ -5,6 +5,7 @@ import 'package:the_real_thing/config/app_routes.dart';
 import 'package:the_real_thing/styles/app_text.dart';
 
 import '../config/app_strings.dart';
+import '../user_provider.dart';
 
 enum ProfileMenu {
   edit,
@@ -16,6 +17,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = UserProvider.of(context)?.user;
+
     return Scaffold(
       appBar: Toolbar(
         title: AppStrings.profile,
@@ -47,20 +50,20 @@ class ProfilePage extends StatelessWidget {
           )
         ],
       ),
-      body: const Column(children: [
-        UserAvatar(size: 90),
-        SizedBox(height: 24),
+      body: Column(children: [
+        const UserAvatar(size: 90),
+        const SizedBox(height: 24),
         Text(
-          'User Name',
+          '${user?.id} ${user?.firstName} ${user?.lastName}',
           style: AppText.header2,
         ),
-        SizedBox(height: 12),
-        Text(
+        const SizedBox(height: 12),
+        const Text(
           'Madagascar',
           style: AppText.subtitle3,
         ),
-        SizedBox(height: 24),
-        Row(
+        const SizedBox(height: 24),
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Column(
@@ -92,7 +95,7 @@ class ProfilePage extends StatelessWidget {
             )
           ],
         ),
-        Divider(
+        const Divider(
           thickness: 1,
           height: 24,
         ),

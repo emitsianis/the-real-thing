@@ -20,12 +20,12 @@ class _MainPageState extends State<MainPage> {
   Menus currentIndex = Menus.home;
 
   final pages = [
-    HomePage(),
-    const Center(child: Text(AppStrings.favorites)),
-    const Center(child: Text(AppStrings.addPost)),
-    const Center(child: Text(AppStrings.messages)),
-    const ProfilePage(),
-  ];
+        HomePage(),
+        const Center(child: Text(AppStrings.favorites)),
+        const Center(child: Text(AppStrings.addPost)),
+        const Center(child: Text(AppStrings.messages)),
+        ProfilePage(),
+      ];
 
   @override
   Widget build(BuildContext context) {
@@ -93,11 +93,10 @@ class MyBottomNavigation extends StatelessWidget {
                   ),
                   Expanded(
                     child: BottomNavigationItem(
-                      onPressed: () => onTap(Menus.favorites),
-                      icon: AppIcons.icFavorite,
-                      current: currentIndex,
-                      name: Menus.favorites
-                    ),
+                        onPressed: () => onTap(Menus.favorites),
+                        icon: AppIcons.icFavorite,
+                        current: currentIndex,
+                        name: Menus.favorites),
                   ),
                   const Spacer(),
                   Expanded(

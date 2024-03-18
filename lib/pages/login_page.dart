@@ -1,13 +1,25 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:the_real_thing/config/app_icons.dart';
 import 'package:the_real_thing/config/app_routes.dart';
 import 'package:the_real_thing/config/app_strings.dart';
-import 'package:the_real_thing/pages/home_page.dart';
+import 'package:http/http.dart' as http;
+
+import '../models/user.dart';
+import '../user_provider.dart';
+import 'main_page.dart';
+
+const baseUrl = 'http://localhost:8080';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  final loginRoute = '$baseUrl/login';
+  var username;
+  var password;
+
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +48,9 @@ class LoginPage extends StatelessWidget {
               ),
               const Spacer(),
               TextField(
+                onChanged: (value) {
+                  username = value;
+                },
                 decoration: InputDecoration(
                   hintText: AppStrings.username,
                   border: const OutlineInputBorder(
@@ -48,6 +63,9 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 16),
               // Add a SizedBox to create space between the widgets
               TextField(
+                onChanged: (value) {
+                  password = value;
+                },
                 decoration: InputDecoration(
                   hintText: AppStrings.password,
                   border: const OutlineInputBorder(
@@ -78,7 +96,9 @@ class LoginPage extends StatelessWidget {
                     backgroundColor: Colors.amber,
                     foregroundColor: Colors.black,
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    final user = await doLogin();
+                    UserProvider.of(context)?.updateUser(user);
                     Navigator.of(context).pushReplacementNamed(AppRoutes.main);
                   },
                   child: const Text(AppStrings.login),
@@ -178,5 +198,38 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<User> doLogin() async {
+    final body = {
+      'username': username,
+      'password': password,
+    };
+
+    // final response = await http.post(
+    //   Uri.parse(loginRoute),
+    //   body: jsonEncode(body),
+    // );
+
+    final response = {
+      'statusCode': 200,
+      'body': {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "mobile": "+1234567890",
+        "birthday": "1990-01-01",
+        "gender": "male",
+        "visibleGender": true
+      },
+    };
+
+    if (response['statusCode'] == 200) {
+      final user = User.fromJson(jsonDecode(jsonEncode(response['body'])));
+      return user;
+    } else {
+      print('Failed to login');
+      throw Exception('Failed to login');
+    }
   }
 }
