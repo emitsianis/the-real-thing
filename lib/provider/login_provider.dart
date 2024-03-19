@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_real_thing/data/responses/login_response.dart';
 import 'package:the_real_thing/data/services/login_service.dart';
 
-import '../models/user.dart';
+import '../data/models/user.dart';
 
 class LoginProvider extends ChangeNotifier {
   var username = '';

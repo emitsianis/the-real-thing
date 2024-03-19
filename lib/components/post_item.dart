@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:the_real_thing/data/models/post.dart';
 import '../styles/app_text.dart';
 
 class PostItem extends StatelessWidget {
-  final String user;
-  PostItem({super.key, required this.user});
+  final Post post;
+
+  PostItem({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +24,13 @@ class PostItem extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               Text(
-                user,
+                '${post.owner?.firstName} ${post.owner?.lastName}',
                 style: AppText.subtitle3,
               )
             ],
           ),
           const SizedBox(height: 12),
-          Image.asset('assets/temp/post1.jpg'),
+          Image.network(post.image ?? ''),
           const SizedBox(height: 12),
           const Text(
             'This is a post',

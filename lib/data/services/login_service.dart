@@ -3,8 +3,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:the_real_thing/config/app_config.dart';
 import 'package:the_real_thing/data/responses/login_response.dart';
+import 'package:the_real_thing/data/services/base_service.dart';
 
-class LoginService {
+class LoginService extends ServiceBase<LoginResponse> {
   final String username;
   final String password;
 

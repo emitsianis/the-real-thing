@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/user.dart';
+import '../data/models/user.dart';
 
 class AppRepo extends ChangeNotifier {
   String? _token;

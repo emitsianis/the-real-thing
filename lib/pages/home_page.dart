@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:the_real_thing/components/post_item.dart';
 import 'package:the_real_thing/config/app_strings.dart';
+import 'package:the_real_thing/provider/post_provider.dart';
 
 import '../components/toolbar.dart';
 import '../config/app_icons.dart';
 import '../config/app_routes.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({super.key});
 
-  List<String> users = [];
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
-  mockUsersFromServer() {
-    for (int i = 0; i < 100; i++) {
-      users.add('User number$i');
-    }
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<PostProvider>().getPosts();
   }
 
   @override
   Widget build(BuildContext context) {
-    mockUsersFromServer();
-
     return Scaffold(
       appBar: Toolbar(
         title: AppStrings.appName,
@@ -34,14 +37,20 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView.separated(
-        itemBuilder: (context, index) {
-          return PostItem(user: users[index]);
+      body: Consumer<PostProvider>(
+        builder: (context, value, child) {
+          return ListView.separated(
+            itemBuilder: (context, index) {
+              return PostItem(
+                post: value.list[index],
+              );
+            },
+            separatorBuilder: (context, index) {
+              return const SizedBox(height: 24);
+            },
+            itemCount: value.list.length,
+          );
         },
-        separatorBuilder: (context, index) {
-          return const SizedBox(height: 24);
-        },
-        itemCount: users.length,
       ),
     );
   }
