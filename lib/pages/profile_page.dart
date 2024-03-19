@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:the_real_thing/components/toolbar.dart';
 import 'package:the_real_thing/components/user_avatar.dart';
 import 'package:the_real_thing/config/app_routes.dart';
+import 'package:the_real_thing/provider/app_repo.dart';
 import 'package:the_real_thing/styles/app_text.dart';
 
 import '../config/app_strings.dart';
-import '../user_provider.dart';
 
 enum ProfileMenu {
   edit,
@@ -17,7 +18,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = UserProvider.of(context)?.user;
+    final user = Provider.of<AppRepo>(context).user;
 
     return Scaffold(
       appBar: Toolbar(
