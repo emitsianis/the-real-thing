@@ -18,7 +18,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<AppRepo>(context).user;
+    final user = context.read<AppRepo>().user;
 
     return Scaffold(
       appBar: Toolbar(

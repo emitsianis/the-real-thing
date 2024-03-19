@@ -42,7 +42,7 @@ class LoginPage extends StatelessWidget {
               const Spacer(),
               TextField(
                 onChanged: (value) {
-                  Provider.of<LoginProvider>(context).username = value;
+                  context.read<LoginProvider>().username = value;
                 },
                 decoration: InputDecoration(
                   hintText: AppStrings.username,
@@ -57,7 +57,7 @@ class LoginPage extends StatelessWidget {
               // Add a SizedBox to create space between the widgets
               TextField(
                 onChanged: (value) {
-                  Provider.of<LoginProvider>(context).password = value;
+                  context.read<LoginProvider>().password = value;
                 },
                 decoration: InputDecoration(
                   hintText: AppStrings.password,
@@ -90,9 +90,9 @@ class LoginPage extends StatelessWidget {
                     foregroundColor: Colors.black,
                   ),
                   onPressed: () {
-                    Provider.of<LoginProvider>(context, listen: false,).login().then((value) {
-                      Provider.of<AppRepo>(context, listen: false).user = value.user;
-                      Provider.of<AppRepo>(context, listen: false,).token = value.token;
+                    context.read<LoginProvider>().login().then((value) {
+                      context.read<AppRepo>().user = value.user;
+                      context.read<AppRepo>().token = value.token;
                       Navigator.of(context)
                           .pushReplacementNamed(AppRoutes.main);
                     });
