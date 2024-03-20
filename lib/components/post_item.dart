@@ -29,11 +29,13 @@ class PostItem extends StatelessWidget {
               )
             ],
           ),
+          if (post.image != null) ...[
+            const SizedBox(height: 12),
+            Image.network(post.image ?? ''),
+          ],
           const SizedBox(height: 12),
-          Image.network(post.image ?? ''),
-          const SizedBox(height: 12),
-          const Text(
-            'This is a post',
+          Text(
+            post.message!,
             style: AppText.subtitle3,
           ),
         ],
