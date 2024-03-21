@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:the_real_thing/components/new_post_modal.dart';
 import 'package:the_real_thing/config/app_strings.dart';
+import 'package:the_real_thing/pages/chat_page.dart';
 import 'package:the_real_thing/pages/home_page.dart';
 import 'package:the_real_thing/pages/profile_page.dart';
 import 'package:the_real_thing/styles/app_colors.dart';
@@ -24,7 +25,7 @@ class _MainPageState extends State<MainPage> {
     HomePage(),
     const Center(child: Text(AppStrings.favorites)),
     const Center(child: Text(AppStrings.addPost)),
-    const Center(child: Text(AppStrings.messages)),
+    ChatPage(),
     ProfilePage(),
   ];
 
