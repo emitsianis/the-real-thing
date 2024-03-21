@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:the_real_thing/components/app_text_field.dart';
 import 'package:the_real_thing/provider/app_repo.dart';
 import 'package:the_real_thing/provider/post_provider.dart';
@@ -39,25 +42,53 @@ class NewPostModal extends StatelessWidget {
             style: AppText.header1,
           ),
           const SizedBox(height: 16),
-          Container(
-            width: 200,
-            height: 200,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: AppColors.white,
-                width: 2,
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(16)),
-            ),
-            child: const Center(
-              child: Text('Upload from gallery'),
-            ),
+          Consumer<PostProvider>(
+            builder: (context, value, child) {
+              return GestureDetector(
+                onTap: () {
+                  context.read<PostProvider>().pickImage(ImageSource.gallery);
+                },
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: AppColors.white,
+                      width: 2,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(16)),
+                  ),
+                  child: value.imagePath == ''
+                      ? const Center(
+                          child: Text('Upload from gallery'),
+                        )
+                      : ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(16)),
+                          child: Stack(children: [
+                            Image.file(File(value.imagePath!)),
+                            IconButton(
+                              onPressed: () {
+                                value.deleteImage();
+                              },
+                              icon: const Icon(
+                                Icons.delete_rounded,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ]),
+                        ),
+                ),
+              );
+            },
           ),
           const SizedBox(height: 16),
           const Text('OR'),
           const SizedBox(height: 16),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<PostProvider>().pickImage(ImageSource.camera);
+            },
             child: const Text('Use Camera'),
           ),
           const SizedBox(height: 16),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import '../../config/app_config.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart' as parser;
 
 abstract class ServiceBase<T> {
   Future<T> call();
@@ -28,6 +29,26 @@ abstract class ServiceBase<T> {
       );
 
       return _handleResponse(response);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  upload(String apiUrl, String fieldName, String path, {String? token}) async {
+    try {
+      final client = http.MultipartRequest('POST', _getV1Url(apiUrl));
+
+      if (token != null) {
+        client.headers.addAll({'Authorization': 'Bearer $token'});
+      }
+
+      client.files.add(await http.MultipartFile.fromPath(
+        fieldName,
+        path,
+        contentType: parser.MediaType('image', 'jpeg'),
+      ));
+
+      _handleResponse(await http.Response.fromStream(await client.send()));
     } catch (e) {
       throw Exception(e);
     }

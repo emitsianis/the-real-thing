@@ -15,7 +15,7 @@ class CreatePostService extends ServiceBase<void> {
       'message': message,
     };
 
-    if (image != null) {
+    if (image != '') {
       body['image'] = image!;
     }
 

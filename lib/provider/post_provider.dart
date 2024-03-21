@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:the_real_thing/data/services/create_post_service.dart';
 import 'package:the_real_thing/data/services/get_post_service.dart';
+import 'package:the_real_thing/data/services/upload_service.dart';
+import 'package:the_real_thing/utils/utils.dart';
 
 import '../data/models/post.dart';
 import '../data/models/user.dart';
@@ -8,6 +11,7 @@ import '../data/models/user.dart';
 class PostProvider extends ChangeNotifier {
   final List<Post> list = [];
   String message = '';
+  String? imagePath = '';
 
   getPosts() async {
     list.clear();
@@ -16,9 +20,20 @@ class PostProvider extends ChangeNotifier {
   }
 
   Future<void> createPost(String token) async {
-    await CreatePostService(message, null, token).call();
+    String? image;
+
+    if (imagePath != '') {
+      image = await upload();
+    }
+
+    await CreatePostService(message, image, token).call();
     message = '';
+    imagePath = '';
     getPosts();
+  }
+
+  Future<String> upload() async {
+    return await UploadService(imagePath!).call();
   }
 
   Future<void> mockCreatePost(String token) async {
@@ -42,6 +57,22 @@ class PostProvider extends ChangeNotifier {
 
     list.add(newPost);
     message = '';
+    notifyListeners();
+  }
+
+  pickImage(ImageSource source) async {
+    try {
+      final path = await Utils.pickImage(source);
+      final croppedImage = await Utils.cropImage(path);
+      imagePath = croppedImage?.path ?? '';
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  deleteImage() {
+    imagePath = '';
     notifyListeners();
   }
 }
